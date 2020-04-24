@@ -4,21 +4,21 @@
 
 int pinX = 36; // Assigns a pin number to the variable
 int pinY = 39; // Assigns a pin number to the variable
-int joystickButtonPin = 13;
-const int PUSHBUTTON = 15;
-int lastPushValue = 0;
+int joystickButtonPin = 13; // Assigns pin number to the joystick button
+const int PUSHBUTTON = 15; // Assigns pin number to the pushbutton
+int lastPushValue = 0; // Assigns 0 to last push value.
 
 unsigned long currentMillis; // Assigns a current value to the timer function
 unsigned long previousMillis = 0; //will store the last time an interval was hit
 int interval = 1000; // Assigns an interval value to be used in the timer funciton
 int port = 7000; // Assigns a port to be broadcast to
-int extremeMax = 4095;
-int extremeMin = 0;
+int extremeMax = 4095; // Assigns maximum value for the joystick to register
+int extremeMin = 0; // Assigns minimum value for the joystick to register
 
 const char * ssid = "WaiFiFu"; //WiFi name. It varies depending on the user :)
 const char * password = "2nerds&1cat"; //WiFi Password.. THIS IS SECRET DON'T LOOK
 
-void printButton(int pushButtonValue);
+void printButton(int pushButtonValue); // Prepares method printbutton for later calling
 
 AsyncUDP udp; // Creates AsyncUDP object
 
@@ -29,7 +29,7 @@ void setup()
     pinMode(pinX, INPUT); //right/left
     pinMode(pinY, INPUT); //up/down
     pinMode(joystickButtonPin, INPUT_PULLUP); //initializing digital pin 13 as an input with the internal pull up resistor enabled
-    pinMode(PUSHBUTTON,INPUT);
+    pinMode(PUSHBUTTON,INPUT); // Ini
 }
 
 void movement(String direction, String printing){ //Broadcasts the move function to the pxlserver
@@ -54,16 +54,16 @@ void loop(){
     
     if(currentMillis - previousMillis > interval){ //By using an interval, the commands will only be read once every interval.
         if(digitalRead(joystickButtonPin) == LOW){ //LOW means pressed, HIGH means not pressed.
-            udp.broadcastTo("initialize drone", port); // Initialise a pixel by pressing the joystick
-            Serial.println("Button pressed");
+            udp.broadcastTo("initialize drone", port); // Initialise a drone by pressing the joystick
+            Serial.println("Button pressed"); // Prints if the joystick button has been pressed
         }
         movePixel(analogRead(pinX), analogRead(pinY)); //This allows the movePixel() function to read the input from the joystick
         previousMillis = currentMillis; //This makes sure that the interval will repeat.
         int pushValue = digitalRead(PUSHBUTTON);
         if(lastPushValue != pushValue){ //check if we have a changing edge
             if(pushValue==LOW){
-                Serial.println("Pushbutton pressed");
-                udp.broadcastTo("changecolor", port);
+                Serial.println("Pushbutton pressed"); // Prints if the pushbutton has been pressed
+                udp.broadcastTo("changecolor", port); // Tells the drone to change color
             } 
         }
         lastPushValue = pushValue; //set last push button to current value
