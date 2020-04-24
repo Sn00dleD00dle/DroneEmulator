@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class Drone extends DrawableObject {
     private int x = 0;
@@ -8,12 +9,12 @@ public class Drone extends DrawableObject {
     private int sizeX = 20;
     private int sizeY = 20;
     private int speed = 5;
-    private String shape;
+    private Color color = Color.RED;
 
     @Override
     public void draw(GraphicsContext graphicsContext) {
-        graphicsContext.setFill(color);
-        graphicsContext.setStroke(color);
+        graphicsContext.setFill(getColor());
+        graphicsContext.setStroke(getColor());
         graphicsContext.fillRect(x,y,sizeX,sizeY);
     }
 
@@ -57,11 +58,11 @@ public class Drone extends DrawableObject {
         this.speed = speed;
     }
 
-    public String getShape() {
-        return shape;
+    public Color getColor() {
+        return color;
     }
 
-    public void setShape(String shape) {
-        this.shape = shape;
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

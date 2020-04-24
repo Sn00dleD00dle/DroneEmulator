@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.paint.Color;
 
 
 public class Controller {
@@ -25,7 +26,7 @@ public class Controller {
     private GraphicsContext graphicsContext;
 
     public void updateCanvas(){
-        graphicsContext.clearRect(0,0,300,300);
+        graphicsContext.clearRect(0,0,400,400);
         drone.draw(graphicsContext);
     }
 
@@ -100,10 +101,19 @@ public class Controller {
             if (udpMessage.getMessage().equals("movedown")) {
                 drone.setY(drone.getY() + drone.getSpeed());
             }
+            if(udpMessage.getMessage().equals("changecolor")){
+                if(drone.getColor().equals(Color.BLUE)){
+                    drone.setColor(Color.GREEN);
+                } else if(drone.getColor().equals(Color.RED)){
+                    drone.setColor(Color.BLUE);
+                } else if(drone.getColor().equals(Color.GREEN)){
+                    drone.setColor(Color.RED);
+                }
+            }
             table.getItems().add(0, udpMessage);
             updateCanvas();
         }
-        if(udpMessage.getMessage().equals("init 50 50")){
+        if(udpMessage.getMessage().equals("initialize drone")){
             drone.setX((int)canvas.getWidth()/2);
             drone.setY((int)canvas.getHeight()/2);
             table.getItems().add(0, udpMessage);
