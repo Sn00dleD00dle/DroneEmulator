@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Draw me like one of ur French bitches");
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setTitle("Drone Emulator");
+        primaryStage.setScene(new Scene(root, 600, 500));
         primaryStage.show();
     }
 

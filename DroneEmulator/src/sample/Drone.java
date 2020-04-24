@@ -2,19 +2,19 @@ package sample;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public class Drone extends DrawableObject{
-    private int x;
-    private int y;
-    private int sizeX;
-    private int sizeY;
-    private int speed;
+public class Drone extends DrawableObject {
+    private int x = 0;
+    private int y = 0;
+    private int sizeX = 20;
+    private int sizeY = 20;
+    private int speed = 5;
     private String shape;
 
     @Override
     public void draw(GraphicsContext graphicsContext) {
         graphicsContext.setFill(color);
         graphicsContext.setStroke(color);
-        graphicsContext.fillRect(x,y,width,height);
+        graphicsContext.fillRect(x,y,sizeX,sizeY);
     }
 
     public int getX() {
@@ -34,19 +34,19 @@ public class Drone extends DrawableObject{
     }
 
     public int getWidth() {
-        return width;
+        return sizeX;
     }
 
     public void setWidth(int width) {
-        this.width = width;
+        this.sizeX = width;
     }
 
     public int getHeight() {
-        return height;
+        return sizeY;
     }
 
     public void setHeight(int height) {
-        this.height = height;
+        this.sizeY = height;
     }
 
     public int getSpeed() {
