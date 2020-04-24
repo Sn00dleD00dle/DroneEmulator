@@ -24,7 +24,7 @@ public class UdpBroadcastServer implements Runnable{
         broadcastLoop();
     }
 
-    public void broadcastLoop()
+    public void broadcastLoop() // Loops the broadcast message
     {
         do {
             try {
@@ -38,7 +38,7 @@ public class UdpBroadcastServer implements Runnable{
 
     }
 
-    private void broadcastMessage(String message)
+    private void broadcastMessage(String message) // Broadcasts message
     {
         try {
             socket = new DatagramSocket();

@@ -12,7 +12,7 @@ public class UdpMessage {
     private int length;
     private int port;
 
-    public UdpMessage(String message, String ip, int port)
+    public UdpMessage(String message, String ip, int port) // Message constructor!
     {
         SimpleDateFormat formatter;
         formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -25,7 +25,7 @@ public class UdpMessage {
 
     }
 
-    public UdpMessage(byte[] message, int msgLength, InetAddress ip, int port)
+    public UdpMessage(byte[] message, int msgLength, InetAddress ip, int port) // Other message constructor!
     {
         //call other constructor
         this(new String(message, 0, msgLength), ip.getHostAddress(), port );
@@ -49,7 +49,7 @@ public class UdpMessage {
     }
 
     @Override
-    public String toString() {
+    public String toString() { // toString method so we can print the messages
         return "UdpMessage{" +
                 "time='" + time + '\'' +
                 ", message='" + message + '\'' +

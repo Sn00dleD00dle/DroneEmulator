@@ -3,7 +3,7 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Drone extends DrawableObject {
+public class Drone extends DrawableObject { // Declares how we use DrawableObject to draw on canvas
     private int x = 0;
     private int y = 0;
     private int sizeX = 20;
@@ -12,7 +12,7 @@ public class Drone extends DrawableObject {
     private Color color = Color.RED;
 
     @Override
-    public void draw(GraphicsContext graphicsContext) {
+    public void draw(GraphicsContext graphicsContext) { // Draw function
         graphicsContext.setFill(getColor());
         graphicsContext.setStroke(getColor());
         graphicsContext.fillRect(x,y,sizeX,sizeY);

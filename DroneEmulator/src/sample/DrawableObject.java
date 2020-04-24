@@ -3,7 +3,7 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public abstract class DrawableObject {
+public abstract class DrawableObject { // Necessary to be able to draw on canvas at all
     protected int x;
     protected int y;
     protected int width;

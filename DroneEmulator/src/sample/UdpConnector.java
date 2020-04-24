@@ -10,7 +10,7 @@ public class UdpConnector implements Runnable{
     private Controller messageHandler;
     private boolean receiveMessages = true;
 
-    public UdpConnector(Controller messageHandler)
+    public UdpConnector(Controller messageHandler) // Handles messages
     {
         this.messageHandler = messageHandler;
         setupSocket();
@@ -19,9 +19,9 @@ public class UdpConnector implements Runnable{
     public void closeSocket()
     {
         this.socket.close();
-    }
+    } //Closes connection
 
-    public void setupSocket() {
+    public void setupSocket() { //Opens connection
         try {
 
             socket = new DatagramSocket(udpPort);
@@ -31,12 +31,12 @@ public class UdpConnector implements Runnable{
         }
     }
 
-    public void sendMessage(String string, InetAddress address)
+    public void sendMessage(String string, InetAddress address) // Send message method 1
     {
         sendMessage(string.getBytes(), address);
     }
 
-    public void sendMessage(byte[] bytes, InetAddress address)
+    public void sendMessage(byte[] bytes, InetAddress address) // Send message method 2
     {
         DatagramPacket packet = new DatagramPacket(bytes, bytes.length, address, udpPortEcho);
         try {
@@ -50,7 +50,7 @@ public class UdpConnector implements Runnable{
 
     }
 
-    public UdpMessage receiveMessage() {
+    public UdpMessage receiveMessage() { //Receives message and prints in terminal
         byte[] buf = new byte[256];
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         try {
@@ -70,7 +70,7 @@ public class UdpConnector implements Runnable{
         }
     }
 
-    public void echoServer()
+    public void echoServer() // Echoes received message back to sender
     {
         UdpMessage message = receiveMessage();
         try {
@@ -82,12 +82,12 @@ public class UdpConnector implements Runnable{
     }
 
     @Override
-    public void run() {
+    public void run() { // Run *dun dundundundun*
         connectionLoop();
 
     }
 
-    public void connectionLoop() {
+    public void connectionLoop() { //Loops the echoserver while messages are being received
         System.out.println("Started UdpConnector Thread");
         do
         {
@@ -100,9 +100,9 @@ public class UdpConnector implements Runnable{
 
     public boolean isReceiveMessages() {
         return receiveMessages;
-    }
+    } //Are there are messages to receive?
 
-    public void setReceiveMessages(boolean receiveMessages) {
+    public void setReceiveMessages(boolean receiveMessages) { //Yes there are messages to receive
         this.receiveMessages = receiveMessages;
     }
 }
